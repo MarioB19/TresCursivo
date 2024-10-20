@@ -45,9 +45,17 @@ export default function WelcomeCard() {
             transition={{ delay: 0.5, duration: 0.5 }}
           >
             Descubre y comparte la experiencia única de Trescursivo, donde cada movimiento
-            abre un nuevo universo de posibilidades estratégicas. Inicia sesión para
-            generar partidas personalizadas y desbloquear un mundo de desafíos.
+            abre un nuevo universo de posibilidades estratégicas. 
           </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
+            Juega sin crear cuenta.
+          </motion.p>
+
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
