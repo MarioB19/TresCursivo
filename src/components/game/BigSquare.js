@@ -4,8 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
 import SmallSquare from './SmallSquare';
-
-const BigSquare = ({ squares = [], onClick, isActive, winner, ultimateWinner }) => (
+const BigSquare = ({ squares, onClick, isActive, winner, ultimateWinner }) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -84,14 +83,10 @@ const BigSquare = ({ squares = [], onClick, isActive, winner, ultimateWinner }) 
           </motion.div>
         ) : (
           <div className="grid grid-cols-3 gap-1 h-full relative">
-            {/* Vertical lines */}
             <div className="absolute left-1/3 top-0 bottom-0 w-0.5 bg-green-500 opacity-30"></div>
             <div className="absolute right-1/3 top-0 bottom-0 w-0.5 bg-green-500 opacity-30"></div>
-            
-            {/* Horizontal lines */}
             <div className="absolute top-1/3 left-0 right-0 h-0.5 bg-green-500 opacity-30"></div>
             <div className="absolute bottom-1/3 left-0 right-0 h-0.5 bg-green-500 opacity-30"></div>
-            
             {squares.map((value, index) => (
               <SmallSquare
                 key={index}
@@ -105,6 +100,6 @@ const BigSquare = ({ squares = [], onClick, isActive, winner, ultimateWinner }) 
       </CardContent>
     </Card>
   </motion.div>
-);
+)
 
 export default BigSquare;

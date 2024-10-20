@@ -1,84 +1,83 @@
 "use client"
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { RefreshCw } from 'lucide-react';
-import GameBoard from './GameBoard';
-import GameStatus from './GameStatus';
-import GameOverDialog from './GameOverDialog';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Card, CardHeader, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { RefreshCw } from 'lucide-react'
+import GameBoard from './GameBoard'
+import GameStatus from './GameStatus'
+import GameOverDialog from './GameOverDialog'
 
 const UltimateTicTacToe = () => {
-  const initialBoard = Array(9).fill().map(() => Array(9).fill(null));
-  const [board, setBoard] = useState(initialBoard);
-  const [xIsNext, setXIsNext] = useState(true);
-  const [winner, setWinner] = useState(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [nextBoard, setNextBoard] = useState(null);
-  const [metaBoard, setMetaBoard] = useState(Array(9).fill(null));
+  const initialBoard = Array(9).fill().map(() => Array(9).fill(null))
+  const [board, setBoard] = useState(initialBoard)
+  const [xIsNext, setXIsNext] = useState(true)
+  const [winner, setWinner] = useState(null)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [nextBoard, setNextBoard] = useState(null)
+  const [metaBoard, setMetaBoard] = useState(Array(9).fill(null))
 
   const checkWinner = (board) => {
     const lines = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-      [0, 4, 8], [2, 4, 6] // Diagonals
-    ];
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ]
     for (let line of lines) {
-      const [a, b, c] = line;
+      const [a, b, c] = line
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        return board[a];
+        return board[a]
       }
     }
-    return null;
-  };
+    return null
+  }
 
   const isBoardFull = (boardIndex) => {
-    return board[boardIndex].every(cell => cell !== null);
-  };
+    return board[boardIndex].every(cell => cell !== null)
+  }
 
   const handleClick = (bigSquare, smallSquare) => {
-    if (winner || board[bigSquare][smallSquare] || metaBoard[bigSquare]) return;
-    if (nextBoard !== null && nextBoard !== bigSquare) return;
+    if (winner || board[bigSquare][smallSquare] || metaBoard[bigSquare]) return
+    if (nextBoard !== null && nextBoard !== bigSquare) return
 
     const newBoard = board.map((row, index) => 
       index === bigSquare ? [...row] : row
-    );
-    newBoard[bigSquare][smallSquare] = xIsNext ? 'X' : 'O';
-    setBoard(newBoard);
+    )
+    newBoard[bigSquare][smallSquare] = xIsNext ? 'X' : 'O'
+    setBoard(newBoard)
 
-    let newMetaBoard = [...metaBoard];
-    const bigWinner = checkWinner(newBoard[bigSquare]);
+    let newMetaBoard = [...metaBoard]
+    const bigWinner = checkWinner(newBoard[bigSquare])
     if (bigWinner) {
-      newMetaBoard[bigSquare] = bigWinner;
-      setMetaBoard(newMetaBoard);
+      newMetaBoard[bigSquare] = bigWinner
+      setMetaBoard(newMetaBoard)
 
-      const ultimateWinner = checkWinner(newMetaBoard);
+      const ultimateWinner = checkWinner(newMetaBoard)
       if (ultimateWinner) {
-        setWinner(ultimateWinner);
-        setIsDialogOpen(true);
-        return;
+        setWinner(ultimateWinner)
+        setIsDialogOpen(true)
+        return
       }
     }
     
-    setXIsNext(!xIsNext);
+    setXIsNext(!xIsNext)
     
-    // Determine the next board
     if (newMetaBoard[smallSquare] || isBoardFull(smallSquare)) {
-      setNextBoard(null);  // Allow play in any available board
+      setNextBoard(null)
     } else {
-      setNextBoard(smallSquare);
+      setNextBoard(smallSquare)
     }
-  };
+  }
 
   const resetGame = () => {
-    setBoard(initialBoard);
-    setXIsNext(true);
-    setWinner(null);
-    setIsDialogOpen(false);
-    setNextBoard(null);
-    setMetaBoard(Array(9).fill(null));
-  };
+    setBoard(initialBoard)
+    setXIsNext(true)
+    setWinner(null)
+    setIsDialogOpen(false)
+    setNextBoard(null)
+    setMetaBoard(Array(9).fill(null))
+  }
 
   return (
     <motion.div
@@ -121,7 +120,7 @@ const UltimateTicTacToe = () => {
         onRestart={resetGame}
       />
     </motion.div>
-  );
-};
+  )
+}
 
-export default UltimateTicTacToe;
+export default UltimateTicTacToe

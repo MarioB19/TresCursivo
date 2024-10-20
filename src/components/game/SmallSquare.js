@@ -10,7 +10,7 @@ const SmallSquare = ({ value, onClick, disabled }) => {
     animate: { scale: 1, opacity: 1 },
     tap: { scale: 0.95 },
     hover: { scale: 1.05 }
-  };
+  }
 
   return (
     <motion.div
@@ -39,7 +39,8 @@ const SmallSquare = ({ value, onClick, disabled }) => {
         {value}
       </Button>
     </motion.div>
-  );
-};
+  )
+}
+
 
 export default SmallSquare;
