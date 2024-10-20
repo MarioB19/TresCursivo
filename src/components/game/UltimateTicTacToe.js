@@ -1,6 +1,10 @@
 "use client"
+
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { motion } from 'framer-motion';
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { RefreshCw } from 'lucide-react';
 import GameBoard from './GameBoard';
 import GameStatus from './GameStatus';
 import GameOverDialog from './GameOverDialog';
@@ -57,7 +61,6 @@ const UltimateTicTacToe = () => {
       }
     }
     
-
     setXIsNext(!xIsNext);
     
     // Determine the next board
@@ -78,27 +81,46 @@ const UltimateTicTacToe = () => {
   };
 
   return (
-    <Card className="w-auto">
-      <CardHeader>
-        <CardTitle className="text-center">Ultimate Tres en Raya</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <GameBoard
-          board={board}
-          metaBoard={metaBoard}
-          nextBoard={nextBoard}
-          onSquareClick={handleClick}
-          ultimateWinner={winner}
-        />
-        <GameStatus winner={winner} xIsNext={xIsNext} nextBoard={nextBoard} />
-      </CardContent>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+    >
+      <Card className="w-full bg-black border border-green-500 shadow-lg shadow-green-500/20">
+        <CardHeader className="p-4 sm:p-6 flex justify-center items-center">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button
+              onClick={resetGame}
+              variant="outline"
+              className="bg-green-700 text-green-100 hover:bg-green-600 transition-colors duration-200 text-lg sm:text-xl py-3 px-6 rounded-full"
+            >
+              <RefreshCw className="w-6 h-6 mr-2 animate-spin-slow" />
+              Reiniciar Juego
+            </Button>
+          </motion.div>
+        </CardHeader>
+        <CardContent className="p-2 sm:p-4 md:p-6 lg:p-8">
+          <GameBoard
+            board={board}
+            metaBoard={metaBoard}
+            nextBoard={nextBoard}
+            onSquareClick={handleClick}
+            ultimateWinner={winner}
+          />
+          <GameStatus winner={winner} xIsNext={xIsNext} nextBoard={nextBoard} />
+        </CardContent>
+      </Card>
       <GameOverDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}
         winner={winner}
         onRestart={resetGame}
       />
-    </Card>
+    </motion.div>
   );
 };
 

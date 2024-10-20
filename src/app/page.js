@@ -1,5 +1,5 @@
 import HomePage from "@/components/home";
-import UltimateTicTacToe from "@/components/game/TicTacToe";
+import UltimateTicTacToe from "@/components/game/UltimateTicTacToe";
 
 
 export default function Home() {

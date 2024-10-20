@@ -28,6 +28,7 @@ export default function ContactSection() {
 
   return (
     <motion.section
+      id="contact"  
       className="w-full py-16 bg-gradient-to-b from-green-900 to-black"
       initial="hidden"
       animate="visible"

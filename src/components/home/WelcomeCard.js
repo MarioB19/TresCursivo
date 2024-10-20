@@ -2,8 +2,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import Logo from "../logo"
+import Link from "next/link"
+
 
 export default function WelcomeCard() {
+
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -49,9 +53,11 @@ export default function WelcomeCard() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, duration: 0.5 }}
           >
-            <Button className="bg-green-500 text-black hover:bg-green-400 text-xl px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 font-semibold">
-              Iniciar Sesión →
-            </Button>
+              <Link href="/play" passHref>
+      <Button className="bg-green-500 text-black hover:bg-green-400 text-xl px-8 py-3 rounded-full transition-all duration-300 hover:scale-105 font-semibold">
+        Jugar →
+      </Button>
+    </Link>
           </motion.div>
         </CardContent>
       </Card>
