@@ -85,7 +85,7 @@ export default function PlayPage() {
                   <a href="https://www.instagram.com/trescursivo" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-base text-green-300 hover:bg-green-800 transition-colors duration-300">
                     Instagram DM
                   </a>
-                  <a href="mailto:soporte@trescursivo.com" className="block px-4 py-2 text-base text-green-300 hover:bg-green-800 transition-colors duration-300">
+                  <a href="mailto:trescursivo@gmail.com" className="block px-4 py-2 text-base text-green-300 hover:bg-green-800 transition-colors duration-300">
                     Correo electrónico
                   </a>
                   <Link href="/#contact" className="block px-4 py-2 text-base text-green-300 hover:bg-green-800 transition-colors duration-300">

@@ -17,7 +17,7 @@ export async function POST(request) {
     // Envía el correo
     await transporter.sendMail({
       from: `"Página Web TresCursivo" <${process.env.EMAIL_USER}>`,
-      to: "brandonmuro.contacto@gmail.com",
+      to: "trescursivo@gmail.com",
       subject: "Nuevo mensaje de contacto página web",
       text: `Nombre: ${nombre}\nEmail: ${email}\nMensaje: ${mensaje}`,
       html: `
