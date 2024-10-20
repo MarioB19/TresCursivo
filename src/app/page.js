@@ -1,9 +1,10 @@
-import UltimateTicTacToe from "@/components/TicTacToe";
+import HomePage from "@/components/home";
+import UltimateTicTacToe from "@/components/game/TicTacToe";
 
 
 export default function Home() {
   return (
-    <UltimateTicTacToe></UltimateTicTacToe>
+    <HomePage></HomePage>
   
   );
 }
