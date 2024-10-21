@@ -3,7 +3,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-export default function Component() {
+export default function AnimatedTitle() {
   const titleVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: { 
@@ -28,7 +28,7 @@ export default function Component() {
 
   return (
     <motion.div 
-      className="text-center py-8 mb-12"
+      className="text-center py-8 mb-6"
       variants={titleVariants}
       initial="hidden"
       animate="visible"
