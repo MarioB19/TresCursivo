@@ -20,21 +20,30 @@ const UltimateTicTacToe = () => {
 
   const checkWinner = (board) => {
     const lines = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],
-      [0, 4, 8], [2, 4, 6]
+      [0,1,2],[3,4,5],[6,7,8],
+      [0,3,6],[1,4,7],[2,5,8],
+      [0,4,8],[2,4,6]
     ]
     for (let line of lines) {
-      const [a, b, c] = line
-      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      const [a,b,c] = line
+      if (
+        board[a] &&
+        board[a] === board[b] &&
+        board[a] === board[c] &&
+        (board[a] === 'X' || board[a] === 'O')
+      ) {
         return board[a]
       }
     }
     return null
   }
 
-  const isBoardFull = (boardIndex) => {
-    return board[boardIndex].every(cell => cell !== null)
+  const isBoardFull = (smallBoard) => {
+    return smallBoard.every(cell => cell !== null)
+  }
+
+  const metaBoardIsFull = (metaBoard) => {
+    return metaBoard.every(cell => cell !== null)
   }
 
   const handleClick = (bigSquare, smallSquare) => {
@@ -51,19 +60,25 @@ const UltimateTicTacToe = () => {
     const bigWinner = checkWinner(newBoard[bigSquare])
     if (bigWinner) {
       newMetaBoard[bigSquare] = bigWinner
-      setMetaBoard(newMetaBoard)
-
-      const ultimateWinner = checkWinner(newMetaBoard)
-      if (ultimateWinner) {
-        setWinner(ultimateWinner)
-        setIsDialogOpen(true)
-        return
-      }
+    } else if (isBoardFull(newBoard[bigSquare])) {
+      newMetaBoard[bigSquare] = 'D'
     }
-    
+    setMetaBoard(newMetaBoard)
+
+    const ultimateWinner = checkWinner(newMetaBoard)
+    if (ultimateWinner) {
+      setWinner(ultimateWinner)
+      setIsDialogOpen(true)
+      return
+    } else if (metaBoardIsFull(newMetaBoard)) {
+      setWinner('D')
+      setIsDialogOpen(true)
+      return
+    }
+
     setXIsNext(!xIsNext)
-    
-    if (newMetaBoard[smallSquare] || isBoardFull(smallSquare)) {
+
+    if (newMetaBoard[smallSquare] || isBoardFull(newBoard[smallSquare])) {
       setNextBoard(null)
     } else {
       setNextBoard(smallSquare)

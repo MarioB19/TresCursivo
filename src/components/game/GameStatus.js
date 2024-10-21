@@ -26,7 +26,11 @@ const GameStatus = ({ winner, xIsNext, nextBoard }) => {
         variants={textVariants}
       >
         {winner ? (
-          <span className="text-green-400">¡{winner} ha ganado el juego!</span>
+          winner === 'D' ? (
+            <span className="text-red-400">¡El juego terminó en empate!</span>
+          ) : (
+            <span className="text-green-400">¡{winner} ha ganado el juego!</span>
+          )
         ) : (
           <>
             Siguiente jugador: 
@@ -36,15 +40,17 @@ const GameStatus = ({ winner, xIsNext, nextBoard }) => {
           </>
         )}
       </motion.p>
-      <motion.p 
-        className="text-lg text-green-300"
-        variants={textVariants}
-      >
-        {nextBoard === null 
-          ? "Puedes jugar en cualquier tablero disponible" 
-          : `Debes jugar en el tablero ${nextBoard + 1}`
-        }
-      </motion.p>
+      {!winner && (
+        <motion.p 
+          className="text-lg text-green-300"
+          variants={textVariants}
+        >
+          {nextBoard === null 
+            ? "Puedes jugar en cualquier tablero disponible" 
+            : `Debes jugar en el tablero ${nextBoard + 1}`
+          }
+        </motion.p>
+      )}
     </motion.div>
   );
 };
