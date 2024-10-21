@@ -4,6 +4,10 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Instagram, AlertTriangle, X } from 'lucide-react'
 import UltimateTicTacToe from '@/components/game/UltimateTicTacToe'
+import Navbar from '@/components/navbar'
+import Footer from '@/components/footer'
+import AnimatedTitle from '@/components/game/AnimatedTitleGame'
+import GameDescription from '@/components/game/GameDescription'
 
 const TrescursivoGame = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,8 +15,13 @@ const TrescursivoGame = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
+
+    <>
+
+    <Navbar></Navbar>
+
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-green-900 to-black text-green-300">
-      <h1 className="text-3xl sm:text-4xl font-bold text-center py-6">Juega Trescursivo</h1>
+      <AnimatedTitle></AnimatedTitle>
 
       <main className="flex-grow flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-4xl mx-auto mb-8">
@@ -81,11 +90,12 @@ const TrescursivoGame = () => {
         </div>
       </main>
 
-      <footer className="p-4 text-center">
-        <p className="mb-2">Trescursivo es una versión recursiva del clásico juego de tres en raya.</p>
-        <p>¡Demuestra tu estrategia en este desafiante juego!</p>
-      </footer>
+      <GameDescription></GameDescription>
     </div>
+
+    <Footer></Footer>
+
+    </>
   )
 }
 
